@@ -167,7 +167,7 @@ class _LocationPickerState extends State<LocationPicker>
                   bottom: _fabHeight,
                   child: FloatingActionButton(
                     child: StreamBuilder<bool>(
-                      // stream: _onMyLocation.stream,
+                      stream: _onMyLocation.stream,
                       initialData: false,
                       builder: (context, snapshot) {
                         return Icon(
@@ -201,11 +201,16 @@ class _LocationPickerState extends State<LocationPicker>
                                 TextStyle(color: Colors.grey, fontSize: 14),
                             border: InputBorder.none),
                         textInputAction: TextInputAction.search,
-                        onFieldSubmitted: (String str) {
+                        onFieldSubmitted: (String str) async {
                           if (str == null || str.isEmpty) {
                             return;
                           }
-                          _searchKeyword(str);
+                          await _searchKeyword(str);
+                          // 设置中心
+                          if (_poiInfoList.isNotEmpty) {
+                            await _setCenterCoordinate(
+                                _poiInfoList[0].poi.latLng);
+                          }
                         },
                       ),
                     ),

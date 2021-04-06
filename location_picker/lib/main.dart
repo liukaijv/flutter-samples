@@ -1,6 +1,7 @@
 import 'package:amap_map_fluttify/amap_map_fluttify.dart';
 import 'package:flutter/material.dart';
 import 'package:location_picker/location_picker/location_picker_page.dart';
+import 'package:location_picker/location_picker/models.dart';
 
 void main() {
   runApp(MyApp());
@@ -29,6 +30,9 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  double _latitude;
+  double _longitude;
+
   @override
   void initState() {
     super.initState();
@@ -37,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   _initAMap() async {
-    await AmapCore.init('xxx');
+    await AmapCore.init('127f924976174ebb694cbf3f34b641ce');
   }
 
   @override
@@ -50,12 +54,22 @@ class _MyHomePageState extends State<MyHomePage> {
         child: OutlinedButton(
           child: Text('选择位置'),
           onPressed: () async {
-            var result = await Navigator.push(
+            PoiInfo result = await Navigator.push(
               context,
               MaterialPageRoute(builder: (context) {
-                return LocationPickerPage();
+                return LocationPickerPage(
+                  latitude: _latitude,
+                  longitude: _longitude,
+                );
               }),
             );
+
+            if (result != null) {
+              setState(() {
+                _latitude = result.poi.latLng.latitude;
+                _longitude = result.poi.latLng.longitude;
+              });
+            }
 
             showDialog(
                 context: context,

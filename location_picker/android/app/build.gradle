@@ -34,8 +34,7 @@ android {
 
     defaultConfig {
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
-//        applicationId "com.example.location_picker"
-        applicationId "com.xxx"
+        applicationId "com.example.location_picker"
         minSdkVersion 21
         targetSdkVersion 30
         versionCode flutterVersionCode.toInteger()
@@ -44,10 +43,10 @@ android {
 
     signingConfigs {
         release {
-            keyAlias 'xxx'
-            keyPassword 'xxx'
-            storeFile file('../xxxs')
-            storePassword 'xxx'
+            keyAlias 'test_app'
+            keyPassword '111111'
+            storeFile file('../test_app.keystore')
+            storePassword '111111'
         }
     }
 

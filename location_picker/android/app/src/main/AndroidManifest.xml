@@ -6,7 +6,7 @@
         android:label="location_picker">
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="xxx" />
+            android:value="127f924976174ebb694cbf3f34b641ce" />
         <activity
             android:name=".MainActivity"
             android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"

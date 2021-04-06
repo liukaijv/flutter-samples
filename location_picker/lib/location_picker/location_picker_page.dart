@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:location_picker/location_picker/models.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import 'location_picker_widget.dart';
@@ -28,7 +29,7 @@ class _LocationPickerPageState extends State<LocationPickerPage> {
             trailing: selected ? Icon(Icons.check) : SizedBox.shrink(),
           );
         },
-        onItemSelected: (info) {
+        onItemSelected: (PoiInfo info) {
           Navigator.pop(context, info);
         },
         longitude: widget.longitude,
