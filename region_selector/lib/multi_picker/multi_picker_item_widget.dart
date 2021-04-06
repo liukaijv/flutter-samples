@@ -21,11 +21,13 @@ class MultiPickerItemState extends State<MultiPickerItem> {
   void initState() {
     super.initState();
     _scrollController =
-        FixedExtentScrollController(initialItem: _pickerItemData.index);
+        FixedExtentScrollController(initialItem: _pickerItemData.selectedIndex);
   }
 
   void setItemData(PickerItemData data) {
-    _pickerItemData = data;
+    setState(() {
+      _pickerItemData = data;
+    });
     _scrollController.jumpToItem(0);
   }
 

@@ -14,10 +14,10 @@ class MultiPicker extends StatefulWidget {
       : super(key: key);
 
   @override
-  _MultiPickerState createState() => _MultiPickerState();
+  MultiPickerState createState() => MultiPickerState();
 }
 
-class _MultiPickerState extends State<MultiPicker> {
+class MultiPickerState extends State<MultiPicker> {
   List<GlobalKey<MultiPickerItemState>> _states = [];
 
   void setItemData(int index, PickerItemData data) {
@@ -40,9 +40,12 @@ class _MultiPickerState extends State<MultiPicker> {
             children: <Widget>[
               new InkWell(
                 onTap: () {
-                  widget.onCancel == null
-                      ? Navigator.of(context).pop()
-                      : widget.onCancel();
+                  if (widget.onCancel != null) {
+                    Navigator.of(context).pop();
+                    widget.onCancel();
+                    return;
+                  }
+                  Navigator.of(context).pop();
                 },
                 child: new Padding(
                   padding: EdgeInsets.all(16.0),
@@ -60,9 +63,12 @@ class _MultiPickerState extends State<MultiPicker> {
                   : Container(),
               new InkWell(
                 onTap: () {
-                  widget.onConfirm != null
-                      ? Navigator.of(context).pop()
-                      : widget.onConfirm();
+                  if (widget.onConfirm != null) {
+                    Navigator.of(context).pop();
+                    widget.onConfirm();
+                    return;
+                  }
+                  Navigator.of(context).pop();
                 },
                 child: new Padding(
                   padding: EdgeInsets.all(16.0),
